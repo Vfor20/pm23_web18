@@ -1,0 +1,237 @@
+:root {
+  --bright-yellow: #feca04; /* Define your color here */
+}
+@font-face {
+  font-family: 'Raleway'; /* Custom name for your font */
+  src: url('src/fonts/Raleway-VariableFont_wght.ttf') format('truetype'); /* Path to your .ttf file */
+}
+body {
+  background-color: #f0f0f0; /* Light background for the body */
+}
+.resume {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #ffffff; /* White background for the resume */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  background-color: white;
+}
+.profile-image {
+  max-width: 292px; /* Maximum width for the image */
+  height: auto; /* Maintain aspect ratio */
+  margin-left: auto; /* Push the image to the right */
+  margin-right: 0; /* Remove right margin */
+  display: block; /* Treat image as a block element */
+}
+
+.profile-container
+{
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.profile-header h1 {
+  color: #343a40; /* Dark grey for name */
+}
+.name-style
+{
+  font-family: Raleway, sans-serif;
+  font-size: 40px;
+  letter-spacing: 2px
+}
+.yellow-background
+{
+  background-color: var(--bright-yellow);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  color: #22222d;
+  font-size: 16.5px;
+  font-weight: 500
+}
+.yellow-background-main-section
+{
+  background-color: var(--bright-yellow);
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #22222d;
+  font-size: 14px;
+  font-weight: 500
+}
+.color-left {
+  background-color: #292935;
+  color: white;
+}
+
+.color-right {
+  background-color: #22222e;
+  color: white;
+}
+.main-text
+{
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
+.highlight {
+  color: #232438; /* Bright yellow for highlighted text */
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+.section-container {
+  margin-left: 35px;
+  margin-right: 40px;
+}
+.section-title {
+  color: #f0f0f0;
+  text-transform: uppercase;
+  font-family: Raleway, sans-serif;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid var(--bright-yellow);
+  display: inline-block;
+  white-space: nowrap;
+  width: 25px; /* Make the width auto so it only covers the text */
+}
+
+.footer-section a {
+  color: var(--bright-yellow);
+}
+
+.image-container {
+  position: relative; /* Required for absolute positioning of the pseudo-element */
+  overflow: visible; /* Allow overflow to show the line */
+}
+
+.reference-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap; /* Ensure it wraps on smaller screens */
+  gap: 20px; /* Adds space between both rows and columns */
+}
+
+.reference-item {
+  width: calc(50% - 20px); /* Adjust width to accommodate gap */
+  margin-bottom: 0; /* No longer needed if using gap */
+  font-size: small;
+}
+
+@media (max-width: 768px) {
+  .reference-item {
+    width: 100%; /* Stack the columns on small screens */
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Expertise item layout */
+.expertise-item {
+  display: flex;
+  align-items: center; /* Vertically aligns text and bars */
+  margin-bottom: 10px; /* Space between rows */
+}
+
+/* Add a fixed width for the labels */
+.expertise-item span {
+  width: 100px; /* Set a fixed width for all labels */
+  text-align: left; /* Align the text to the left */
+  flex-shrink: 0; /* Prevent the label from shrinking */
+}
+
+/* Bar container */
+.bar-container {
+  background-color: #333; /* Background for empty bar */
+  flex-grow: 1; /* Allow bars to grow and take up available space */
+  height: 8px; /* Bar height */
+  border-radius: 5px; /* Rounded edges for bars */
+  overflow: hidden; /* Ensure the bar stays within bounds */
+  position: relative;
+}
+
+/* Filled portion of the bar */
+.bar {
+  height: 100%;
+  background-color: #ffcc00; /* Color of the bar */
+  border-radius: 5px 0 0 5px; /* Round the starting side */
+}
+
+
+
+
+.interest-container {
+  display: flex;
+  flex-direction: column; /* Stack title and items vertically */
+  align-items: center; /* Center the items horizontally */
+}
+
+.interest-title {
+  margin-bottom: 10px; /* Space between title and items */
+  font-size: 1.5em; /* Optional: Adjust title size */
+}
+
+
+.interest-items {
+  display: flex; /* Flexbox for horizontal layout */
+  justify-content: flex-start; /* Align items to the left */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  width: 100%; /* Adjust width to fit inside container */
+  margin: 0; /* Remove extra margin */
+  padding: 0;
+}
+
+.interest-item {
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: flex-start; /* Center icon and text */
+  text-align: center; /* Center text under icon */
+  width: 23%; /* Adjust width to fit four items in one row */
+}
+
+.interest-item img {
+  width: 45px; /* Adjust the icon size */
+  height: 45px; /* Maintain aspect ratio */
+  margin-bottom: 5px; /* Space between icon and text */
+}
+
+.contact-section {
+  display: flex; /* Align yellow column and contact details horizontally */ /* Background to match your screenshot */
+  margin: 40px 20px 0;
+}
+
+.yellow-column {
+  width: 60px; /* Width of the yellow column */
+  background-color: #ffc107; /* Yellow color */
+  display: flex;
+  flex-direction: column; /* Stack icons vertically */
+  align-items: center; /* Center the icons horizontally */
+  justify-content: space-evenly; /* Even space between the icons */
+  padding: 20px 0; /* Vertical padding inside the column */
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  margin: 10px 0; /* Spacing between icons */
+}
+
+.contact-details {
+  margin-left: 20px; /* Space between yellow column and details */
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  justify-content: space-evenly; /* Even space between text lines */
+  color: white; /* Text color */
+  font-family: Arial, sans-serif;
+  margin-top: 30px;
+}
+
+
+
