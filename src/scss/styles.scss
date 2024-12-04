@@ -151,7 +151,6 @@ body {
   background-color: #333; /* Background for empty bar */
   flex-grow: 1; /* Allow bars to grow and take up available space */
   height: 8px; /* Bar height */
-  border-radius: 5px; /* Rounded edges for bars */
   overflow: hidden; /* Ensure the bar stays within bounds */
   position: relative;
 }
@@ -160,7 +159,6 @@ body {
 .bar {
   height: 100%;
   background-color: #ffcc00; /* Color of the bar */
-  border-radius: 5px 0 0 5px; /* Round the starting side */
 }
 
 
@@ -233,5 +231,55 @@ body {
   margin-top: 30px;
 }
 
+/* General bar container */
+.bar-container {
+  position: relative;
+  background-color: #19c838; /* Dark background for bar track */
+  height: 8px;
+  width: 100%;
+}
 
+/* The yellow bar itself */
+.bar {
+  height: 100%;
+  color: #ffcc00; /* Yellow fill for the progress bar */
+  width: 100%; /* Default to 0, dynamically updated by JS */
+ /* transition: width 0.1s ease-in-out;  Smoothly animate the width */
+  z-index: 5;
+}
 
+/* Slider styling */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px; /* Matches the height of the progress bar */
+  z-index: 2; /* Ensures the slider thumb sits above the bar */
+  pointer-events: all; /* Allows interaction */
+  -webkit-appearance: none; /* Removes default browser styles */
+}
+
+.progress-bar {
+  position: relative;
+  overflow: visible;
+  width: 500px;
+  height: 5px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  height: 100%;
+  width: 0%; /* This will be adjusted with JS */
+  background: #ffcc00;
+}
+
+.slider-thumb {
+  position: absolute;
+  width: 3px;
+  height: 8px;
+  background: #ffcc00;
+  cursor: auto;
+}

@@ -42,37 +42,51 @@
                     <p><strong style="text-transform: uppercase">Enter your major</strong><br><span style="font-size: small">Name Of Your University<br>2009-2011</span></p>
                 </div>
                 <div class="section-container">
-                    <h4 class="section-title" style="margin-top: 55px">Expertise</h4>
                     <div class="expertise">
                         <h4 class="section-title">Expertise</h4>
+
+                        <!-- Photoshop -->
                         <div class="expertise-item">
                             <span>Photoshop</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 80%;"></div>
+                            <div class="progress-bar" id="progressBarPhotoshop">
+                                <div class="progress-bar-fill" id="progressBarFillPhotoshop"></div>
+                                <div class="slider-thumb" id="sliderThumbPhotoshop"></div>
                             </div>
                         </div>
+
+                        <!-- Illustrator -->
                         <div class="expertise-item">
                             <span>Illustrator</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 70%;"></div>
+                            <div class="progress-bar" id="progressBarIllustrator">
+                                <div class="progress-bar-fill" id="progressBarFillIllustrator"></div>
+                                <div class="slider-thumb" id="sliderThumbIllustrator"></div>
                             </div>
                         </div>
+
+                        <!-- InDesign -->
                         <div class="expertise-item">
                             <span>InDesign</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 60%;"></div>
+                            <div class="progress-bar" id="progressBarIndesign">
+                                <div class="progress-bar-fill" id="progressBarFillIndesign"></div>
+                                <div class="slider-thumb" id="sliderThumbIndesign"></div>
                             </div>
                         </div>
+
+                        <!-- Word -->
                         <div class="expertise-item">
                             <span>Word</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 90%;"></div>
+                            <div class="progress-bar" id="progressBarWord">
+                                <div class="progress-bar-fill" id="progressBarFillWord"></div>
+                                <div class="slider-thumb" id="sliderThumbWord"></div>
                             </div>
                         </div>
+
+                        <!-- PowerPoint -->
                         <div class="expertise-item">
                             <span>PowerPoint</span>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 75%;"></div>
+                            <div class="progress-bar" id="progressBarPowerPoint">
+                                <div class="progress-bar-fill" id="progressBarFillPowerPoint"></div>
+                                <div class="slider-thumb" id="sliderThumbPowerPoint"></div>
                             </div>
                         </div>
                     </div>
@@ -160,5 +174,59 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Get all progress bar containers and handle each one
+    const sliders = [
+        { id: 'Photoshop' },
+        { id: 'Illustrator' },
+        { id: 'Indesign' },
+        { id: 'Word' },
+        { id: 'PowerPoint' }
+    ];
+
+    sliders.forEach(({ id }) => {
+        const progressBar = document.getElementById(`progressBar${id}`);
+        const progressBarFill = document.getElementById(`progressBarFill${id}`);
+        const sliderThumb = document.getElementById(`sliderThumb${id}`);
+
+        let isDragging = false;
+
+        // Helper to get mouse position relative to the progress bar
+        function getRelativePosition(event) {
+            const rect = progressBar.getBoundingClientRect();
+            let position = event.clientX - rect.left;
+            position = Math.max(0, Math.min(position, rect.width)); // Clamp position
+            return position;
+        }
+
+        // Update the fill and thumb position
+        function updateProgress(position) {
+            const progress = (position / progressBar.offsetWidth) * 100;
+            progressBarFill.style.width = `${progress}%`;
+            sliderThumb.style.left = `${position - sliderThumb.offsetWidth / 2}px`;
+        }
+
+        // Mouse down event on the slider thumb
+        sliderThumb.addEventListener('mousedown', () => {
+            isDragging = true;
+        });
+
+        // Mouse move event on the document
+        document.addEventListener('mousemove', (event) => {
+            if (!isDragging) return;
+            const position = getRelativePosition(event);
+            updateProgress(position);
+        });
+
+        // Mouse up event on the document
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Initialize the progress at 0%
+        updateProgress(0);
+    });
+
+</script>
 </body>
 </html>
