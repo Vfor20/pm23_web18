@@ -26,8 +26,14 @@
                 <h1 class="name-style"><span class="highlight">Mathew</span> Smith</h1>
                 <h6 class="yellow-background">Graphic & Web Designer</h6>
                 <h5 style="margin-top: 2px;"></h5>
-                <h6 class="section-title" style="color: #22222d; margin-top: 20px">Profile</h6>
-                <p style="font-family: Montserrat, sans-serif; font-size: 14px; width: 400px; text-align-last: left; margin-bottom: 60px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="section-toggle">
+                    <div class="section-toggle-title" onclick="toggleSection(event)">
+                        <h6 class="section-title" style="color: #22222d; margin-top: 20px">Profile</h6>
+                    </div>
+                    <div class="section-toggle-content">
+                        <p style="font-family: Montserrat, sans-serif; font-size: 14px; width: 400px; text-align-last: left; margin-bottom: 60px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,13 +129,25 @@
             <div class="col-md-7 color-right">
                 <div class="section-container">
                     <h4 class="section-title">Work Experience</h4>
-                    <p><strong>Enter Job Position Here</strong></p>
-                    <p><span class="yellow-background-main-section"> Present</span> Company Name/Location</p>
-                    <p class="main-text">Lorem ipsum dolor sit amet, this is a thena  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut  </p>
+                    <div class="section-toggle">
+                        <div class="section-toggle-title" onclick="toggleSection(event)">
+                            <p><strong>Enter Job Position Here</strong></p>
+                        </div>
+                        <div class="section-toggle-content">
+                            <p><span class="yellow-background-main-section"> Present</span> Company Name/Location</p>
+                            <p class="main-text">Lorem ipsum dolor sit amet, this is a thena  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut  </p>
+                        </div>
+                    </div>
                     <br>
-                    <p><strong>Enter Job Position Here</strong></p>
-                    <p><span class="yellow-background-main-section"> 2015-2017</span> Company Name/Location</p>
-                    <p class="main-text">Lorem ipsum dolor sit amet, this is a thena  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut  </p>
+                    <div class="section-toggle">
+                        <div class="section-toggle-title" onclick="toggleSection(event)">
+                            <p><strong>Enter Job Position Here</strong></p>
+                        </div>
+                        <div class="section-toggle-content">
+                            <p><span class="yellow-background-main-section"> 2015-2017</span> Company Name/Location</p>
+                            <p class="main-text">Lorem ipsum dolor sit amet, this is a thena  consectetur adipisicing elit, sed do eiusmod tempor incididunt ut  </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="section-container">
                     <h4 class="section-title">Reference</h4>
@@ -183,6 +201,23 @@
         { id: 'Word' },
         { id: 'PowerPoint' }
     ];
+
+    function toggleSection(event) {
+        // Ensure we get the closest section-toggle-title
+        const title = event.target.closest('.section-toggle-title');
+        if (!title) return;
+
+        // Get the content div inside the same section
+        const content = title.closest('.section-toggle').querySelector('.section-toggle-content');
+        if (!content) {
+            console.error("Content not found");
+            return;
+        }
+
+        const isExpanded = content.classList.contains('expanded');
+        content.classList.toggle('expanded', !isExpanded);
+    }
+
 
     sliders.forEach(({ id }) => {
         const progressBar = document.getElementById(`progressBar${id}`);

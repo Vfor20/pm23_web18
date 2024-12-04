@@ -283,3 +283,24 @@ body {
   background: #ffcc00;
   cursor: auto;
 }
+
+.section-toggle {
+  width: 100%;
+  overflow: hidden;
+}
+
+.section-toggle-title {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-toggle-content {
+  margin-top: 10px;
+  max-height: 0; /* Start with height 0 */
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.section-toggle-content.expanded {
+  max-height: 200px; /* Adjust this based on your content's expected height */
+}
