@@ -36,6 +36,21 @@ gulp.task("scripts", function () {
         .pipe(gulp.dest("dist/js"));
 });
 
+// Task to copy data files like JSON or other assets
+gulp.task('data', function () {
+    return gulp.src("src/data/**/*")
+        .pipe(gulp.dest("dist/data"))
+        .pipe(browserSync.stream()); // Trigger a reload after copying data files
+});
+
+// Task to reload the browser
+gulp.task('reload', function (done) {
+    browserSync.reload(); // Reloads the browser
+    done();
+});
+
+
+
 // Task to compress img
 gulp.task('imgs', function () {
     return gulp.src("src/img/*.+(jpg|jpeg|png|gif|webp|svg)", { encoding: false })
@@ -61,8 +76,13 @@ gulp.task("watch", function () {
     gulp.watch("src/*.html", gulp.series("html"));
     gulp.watch("src/scss/*.scss", gulp.series("sass"));
     gulp.watch("src/js/*.js", gulp.series("scripts"));
-    gulp.watch("src/img/*.+(jpg|jpeg|png|gif)", gulp.series("imgs"));
+    gulp.watch("src/img/*.+(jpg|jpeg|png|gif|webp|svg)", gulp.series("imgs"));
+    gulp.watch("src/data/**/*", gulp.series("data", function(done) {
+        browserSync.reload(); // Ensure the page reloads after data change
+        done(); // Indicate task completion
+    }));
 });
+
 
 // Default task to run when `gulp` is called
 gulp.task("default", gulp.parallel("html", "sass", "scripts", "imgs", "watch"));
