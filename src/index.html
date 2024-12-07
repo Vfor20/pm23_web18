@@ -193,10 +193,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Fetch data and update profile section
     async function fetchProfileData() {
         try {
-            const response = await fetch('data/data.json'); // Path to your JSON file
+            const response = await fetch('data/data.json');
             if (!response.ok) throw new Error('Failed to fetch data.');
 
             const data = await response.json();
@@ -206,7 +205,6 @@
         }
     }
 
-    // Update the DOM with the fetched data
     function updateProfile(profile) {
         document.querySelector('.name-style .highlight').textContent = profile.name.split(' ')[0];
         document.querySelector('.name-style').lastChild.textContent = ` ${profile.name.split(' ')[1]}`;
@@ -214,9 +212,7 @@
         document.querySelector('.section-toggle-content p').textContent = profile.description;
     }
 
-    // Event listener to fetch profile data on profile image click
     document.getElementById('profileImage').addEventListener('click', fetchProfileData);
-    // Get all progress bar containers and handle each one
     const sliders = [
         { id: 'Photoshop' },
         { id: 'Illustrator' },
@@ -226,11 +222,9 @@
     ];
 
     function toggleSection(event) {
-        // Ensure we get the closest section-toggle-title
         const title = event.target.closest('.section-toggle-title');
         if (!title) return;
 
-        // Get the content div inside the same section
         const content = title.closest('.section-toggle').querySelector('.section-toggle-content');
         if (!content) {
             console.error("Content not found");
@@ -257,31 +251,26 @@
             return position;
         }
 
-        // Update the fill and thumb position
         function updateProgress(position) {
             const progress = (position / progressBar.offsetWidth) * 100;
             progressBarFill.style.width = `${progress}%`;
             sliderThumb.style.left = `${position - sliderThumb.offsetWidth / 2}px`;
         }
 
-        // Mouse down event on the slider thumb
         sliderThumb.addEventListener('mousedown', () => {
             isDragging = true;
         });
 
-        // Mouse move event on the document
         document.addEventListener('mousemove', (event) => {
             if (!isDragging) return;
             const position = getRelativePosition(event);
             updateProgress(position);
         });
 
-        // Mouse up event on the document
         document.addEventListener('mouseup', () => {
             isDragging = false;
         });
 
-        // Initialize the progress at 0%
         updateProgress(0);
     });
 
